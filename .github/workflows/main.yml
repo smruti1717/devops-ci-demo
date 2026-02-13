@@ -1,16 +1,33 @@
+# Name of the workflow (this will appear in the Actions tab in GitHub)
 name: Simple CI Workflow
 
+# This defines when the workflow will run
 on:
+  # Trigger the workflow whenever code is pushed
   push:
+    # Run only if the push is made to the "main" branch
     branches: [ "main" ]
 
+# Define the jobs that will run in this workflow
 jobs:
+  # Job ID (you can name it anything)
   build:
+    
+    # Specify the operating system for the runner
+    # GitHub provides a virtual machine (Ubuntu latest version)
     runs-on: ubuntu-latest
 
+    # Steps are the individual tasks executed in order
     steps:
+    
+    # Step 1: Checkout the repository code
     - name: Checkout code
+      # This uses a pre-built GitHub Action to clone your repository
       uses: actions/checkout@v3
 
+    # Step 2: Run a simple command
     - name: Run simple check
+      # This executes a shell command in the runner
+      # Here it just prints a success message
       run: echo "CI workflow executed successfully"
+
